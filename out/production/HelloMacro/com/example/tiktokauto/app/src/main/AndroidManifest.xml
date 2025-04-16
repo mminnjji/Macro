@@ -1,0 +1,36 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tiktokauto">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:allowBackup="true"
+        android:label="TikTok AutoClicker"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <!-- 접근성 서비스 등록 -->
+        <service
+            android:name=".AutoClickAccessibility"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <!-- ForegroundService -->
+        <service android:name=".MainService"
+            android:foregroundServiceType="mediaProjection" />
+
+        <!-- 알람 리시버 -->
+        <receiver android:name=".AlarmReceiver" />
+
+        <!-- 클릭 설정 액티비티 -->
+        <activity android:name=".ClickSettingActivity" />
+
+    </application>
+</manifest>

@@ -12,9 +12,6 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
-
-        // Java & Kotlin 호환성
-        multiDexEnabled true
     }
 
     buildTypes {
